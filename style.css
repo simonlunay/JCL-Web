@@ -8,7 +8,14 @@ body {
   line-height: 1.4;
   box-sizing: border-box;
 }
-
+html, body {
+  width: 100%;
+  overflow-x: hidden;
+}
+*, *::before, *::after {
+  box-sizing: border-box;
+  max-width: 100%;
+}
 @keyframes slideInFromRight {
   0% {
     transform: translateX(100%);
@@ -448,5 +455,79 @@ ul li {
 
   .dropdown-menu a {
     padding-left: 1.875rem;
+  }
+}
+@media screen and (max-width: 480px) {
+  body {
+    font-size: 0.95rem;
+    line-height: 1.5;
+    padding-top: 8rem;
+  }
+
+  .site-header {
+    height: 5.5rem;
+    padding: 0 0.5rem;
+  }
+
+  .separator {
+    top: 5.5rem;
+    height: 1rem;
+  }
+
+  .nav-bar {
+    top: 6.5rem;
+  }
+
+  .logo {
+    transform: scale(1.3);
+    width: 7rem;
+  }
+
+  .about p {
+    padding: 1.25rem;
+    font-size: 0.95rem;
+  }
+
+  .text-content {
+    flex-direction: column;
+    gap: 1.25rem;
+    padding: 2rem 1rem;
+  }
+
+  .text-content img {
+    width: 100%;
+    height: auto;
+  }
+
+  .image-column {
+    flex-direction: row;
+    overflow-x: auto;
+    width: 100%;
+    gap: 1rem;
+    padding: 0 1rem;
+  }
+
+  .image-wrapper {
+    flex: 0 0 75%;
+    padding: 1rem 0.5rem;
+  }
+
+  .footer-top {
+    flex-direction: column;
+    gap: 1.25rem;
+  }
+
+  .footer-section {
+    border-right: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .road-separator-vertical {
+    display: none;
+  }
+
+  .road-separator-horizontal::before {
+    background-image: repeating-linear-gradient(to right, #f1b400 0 0.5rem, transparent 0.5rem 1rem);
   }
 }

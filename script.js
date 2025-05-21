@@ -40,3 +40,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   });
 });
+//javascript clamp protection
+window.addEventListener('resize', () => {
+  document.body.style.overflowX = 'hidden';
+});
