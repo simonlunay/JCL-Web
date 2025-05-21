@@ -531,3 +531,33 @@ ul li {
     background-image: repeating-linear-gradient(to right, #f1b400 0 0.5rem, transparent 0.5rem 1rem);
   }
 }
+/* Target iPhone 14 width roughly: 390px wide in portrait */
+@media screen and (max-width: 414px) {
+  main {
+    flex-direction: column; /* stack content vertically on narrow screens */
+    padding: 0 1rem;
+  }
+
+  /* Fix text color in main area */
+  .text-column {
+    color: #000; /* ensure text is visible */
+  }
+
+  /* Ensure captions are hidden by default */
+  .img-description {
+    opacity: 0 !important;
+    pointer-events: none;
+  }
+
+  /* Show caption only on tap or hover */
+  .image-wrapper.open .img-description,
+  .image-wrapper:hover .img-description {
+    opacity: 1 !important;
+    pointer-events: auto;
+  }
+
+  /* Adjust image-wrapper for better touch interaction */
+  .image-wrapper {
+    padding: 1rem;
+  }
+}
