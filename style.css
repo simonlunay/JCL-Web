@@ -540,7 +540,7 @@ ul li {
 
   /* Fix text color in main area */
   .text-column {
-    color: #000; /* ensure text is visible */
+    color: #000 !important; /* ensure text is visible */
   }
 
   /* Ensure captions are hidden by default */
