@@ -560,4 +560,8 @@ ul li {
   .image-wrapper {
     padding: 1rem;
   }
+  .image-column,
+  .image-wrapper,
+  .image-wrapper img {display: none !important; /* hide all images by default */
+  }
 }
