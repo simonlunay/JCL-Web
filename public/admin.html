@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Admin - Add Item</title>
+</head>
+
+
+<body>
+  <div id="editModal" style="display:none; position:fixed; top:0; left:0; width:100vw; height:100vh; background:rgba(0,0,0,0.5);">
+  <div style="background:#fff; padding:20px; margin: 50px auto; max-width:400px; position:relative;">
+    <button id="editModalClose" style="position:absolute; top:10px; right:10px;">X</button>
+    <form id="editForm" enctype="multipart/form-data">
+      <input type="hidden" name="id" />
+      <label>Title: <input name="title" required></label><br/>
+      <label>Description: <textarea name="description" required></textarea></label><br/>
+      <label>Price: <input name="price" type="number" step="0.01" required></label><br/>
+      <label>Photo (leave blank to keep current): <input type="file" name="photo"></label><br/>
+      <button type="submit">Save Changes</button>
+    </form>
+  </div>
+</div>
+  <h1>Add New Item</h1>
+
+  <form id="addForm" enctype="multipart/form-data">
+    <label>
+      Photo: <input type="file" name="photo" accept="image/*" required />
+    </label><br/><br/>
+    <label>
+      Title: <input type="text" name="title" required />
+    </label><br/><br/>
+    <label>
+      Description:<br/>
+      <textarea name="description" rows="4" cols="40" required></textarea>
+    </label><br/><br/>
+    <label>
+      Price: <input type="number" name="price" step="0.01" required />
+    </label><br/><br/>
+
+    <button type="submit">Add Item</button>
+  </form>
+
+  <h2>Existing Items</h2>
+  <ul id="itemsList"></ul>
+<div id="statusMessage" style="position:fixed; top:10px; right:10px; background:#222; color:#fff; padding:10px; border-radius:4px; display:none;"></div>
+
+  <script src="script.js"></script>
+</body>
+</html>

@@ -8,6 +8,54 @@ body {
   line-height: 1.4;
   box-sizing: border-box;
 }
+/* Equipment Container Grid */
+.equipment-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.75rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* Each equipment item card */
+.equipment-item {
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 6px 12px rgba(0,0,0,0.1);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.equipment-item:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 20px rgba(0,0,0,0.15);
+}
+
+/* Image styling */
+.equipment-item img {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  display: block;
+}
+
+/* Equipment name */
+.equipment-item h2 {
+  margin: 1rem;
+  font-size: 1.3rem;
+  color: #0077cc;
+}
+
+/* Description */
+.equipment-item p {
+  margin: 0 1rem 1.25rem;
+  flex-grow: 1;
+  font-size: 1rem;
+  line-height: 1.4;
+  color: #555;
+}
 html, body {
   width: 100%;
   overflow-x: hidden;
@@ -27,6 +75,14 @@ html, body {
 
 .site-header img.full-logo {
   animation: slideInFromRight 8s ease forwards;
+  opacity: 1;
+  max-width: 100%;
+  height: auto;
+  display: block;
+  top: -10px;
+}
+.site-header img.fll-logo {
+
   opacity: 1;
   max-width: 100%;
   height: auto;
@@ -157,7 +213,15 @@ html, body {
   object-fit: cover;
   z-index: -1;
 }
-
+.fll-logo {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: -1;
+}
 .footer-section:first-child {
   border-right: none;
 }
@@ -223,6 +287,39 @@ main {
   height: auto;
   min-width: 12rem;
 }
+a:focus, button:focus, input:focus, textarea:focus {
+  outline: 2px dashed #f1b400;
+  outline-offset: 2px;
+}
+.history-image-column {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(12rem, 1fr));
+  padding:.5rem;
+  column-gap: .25rem;
+  row-gap: .1rem;
+  width: 30rem;         /* same as main .image-column */
+  min-width: 30rem;
+  flex-shrink: 0;
+  flex-wrap:wrap;
+}
+
+.history-image-wrapper {
+  padding: 0.5rem;
+  border-radius: 0.5rem;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.history-image-wrapper img {
+  width: 100%;
+  height: auto;
+  border-radius: 0.5rem;
+  transition: transform 0.3s ease;
+}
+
+.history-image-wrapper:hover img {
+  transform: scale(1.05);
+}
 
 .image-wrapper img {
   display: block;
@@ -249,6 +346,139 @@ main {
   opacity: 0;
   transition: opacity 0.3s ease;
   text-align: center;
+}
+.support-form-container {
+  max-width: 600px;
+  margin: 0 auto;
+  font-family: 'Helvetica Neue', sans-serif;
+  padding: 2rem;
+}
+
+.support-form-container h2 {
+  font-size: 1.8rem;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+}
+
+.support-form-container p {
+  font-size: 0.95rem;
+  margin-bottom: 1rem;
+  color: #333;
+}
+
+.support-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+.form-group {
+  margin-bottom: 1rem;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+.survey-input {
+  border: 2px solid #ccc;
+  padding: 0.5rem;
+  font-size: 1rem;
+  border-radius: 4px;
+  outline:none;
+  box-shadow:none;
+  transition: border-color 0.3s ease;
+}
+
+
+
+.survey-input:focus {
+  border-color: #f1b400;
+}
+
+.survey-input.invalid {
+  border-color: red;
+}
+
+.error-message {
+  color: red;
+  font-size: 0.85rem;
+  font-weight: bold;
+  margin-top: 0.25rem;
+  display: none;
+}
+
+.survey-input.invalid + .error-message {
+  display: block;
+}
+
+.support-form label {
+  display: flex;
+  flex-direction: column;
+  font-weight: 500;
+  font-size: 0.95rem;
+  color:black;
+  
+}
+
+.support-form input,
+.support-form select,
+.support-form textarea {
+  margin-top: 0.25rem;
+  padding: 0.75rem;
+  border: 1px solid #cbd5e0;
+  border-radius: 0.25rem;
+  background-color: #f7fafc;
+  font-size: 1rem;
+  font-family: inherit;
+}
+
+.support-form textarea {
+  resize: vertical;
+  min-height: 100px;
+}
+
+.support-form input:invalid,
+.support-form select:invalid,
+.support-form textarea:invalid {
+  border-color: #e53e3e;
+}
+
+.support-form button {
+  padding: 0.75rem;
+  background-color: #2b6cb0;
+  color: white;
+  font-size: 1rem;
+  border: none;
+  border-radius: 0.25rem;
+  cursor: pointer;
+  align-self: flex-start;
+}
+/* Yellow background while typing (focused) */
+.survey-input:focus {
+  background-color: #fff9c4; /* light yellow */
+  outline: none;
+  border-color: #fbc02d;
+}
+
+/* Red border for invalid inputs */
+.survey-input.invalid {
+  border: 2px solid #e53935; /* red */
+  background-color: #ffcdd2; /* light red background */
+}
+
+/* Show error messages */
+.error-message {
+  color: #e53935;
+  font-size: 0.9rem;
+  display: none; /* hidden by default */
+  margin-top: 4px;
+}
+
+.error-message.active {
+  display: block;
+}
+
+.support-form button:hover {
+  background-color: #2c5282;
 }
 
 .image-wrapper:hover .img-description {
@@ -346,7 +576,69 @@ main {
   color: #fff;
   text-decoration: none;
 }
+.equipment-item h2 a {
+  color: #f1b400; /* bright yellow */
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+/* Container stacks items vertically with gap */
+.vs-items-container {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  max-width: 600px;
+  margin: 2rem auto;
+  padding: 0 1rem;
+}
 
+/* Each item card with subtle styling */
+.vs-item-card {
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  overflow: hidden;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+/* Image fills width, height auto */
+.vs-item-photo {
+  width: 100%;
+  height: auto;
+  border-radius: 6px;
+  object-fit: cover;
+  margin-bottom: 1rem;
+}
+
+/* Title styling */
+.vs-item-title {
+  margin: 0 0 0.5rem 0;
+  font-size: 1.5rem;
+  color: #0077cc;
+}
+
+/* Description text */
+.vs-item-description {
+  margin: 0 0 1rem 0;
+  color: #555;
+  font-size: 1rem;
+  line-height: 1.4;
+}
+
+/* Price with standout color */
+.vs-item-price {
+  margin: 0;
+  font-weight: bold;
+  font-size: 1.2rem;
+  color: #f1b400;
+}
+
+.equipment-item h2 a:hover {
+  color: #000000; /* black */
+  text-decoration: none;
+}
 .company-info {
   max-width: 18.75rem;
 }
@@ -562,6 +854,9 @@ ul li {
   }
   .image-column,
   .image-wrapper,
-  .image-wrapper img {display: none !important; /* hide all images by default */
+  .history-image-column,
+  .history-image-wrapper,
+  .history-image-wrapper img,
+  .image-wrapper img{ display: none !important; /* hide all images by default */
   }
 }
