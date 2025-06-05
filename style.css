@@ -965,4 +965,193 @@ padding-bottom:0;
     flex-direction: column;
     gap: 1rem;
   }
+  
+}
+/* iPhone 16 Plus/Pro Max (expected 430–432px width) */
+@media screen and (max-width: 432px) {
+  main {
+    flex-direction: column; /* stack content vertically on narrow screens */
+    padding-top:2vh;
+  }
+ .site-header{
+  min-height:5vh;
+  height:5vh;
+  max-height:5vh;
+ }
+ .nav-bar{
+top: 5vh;
+max-height:22vh;
+padding-bottom:0;
+ }
+ 
+  /* Fix text color in main area */
+  .text-column {
+    color: #000 !important; /* ensure text is visible */
+  }
+
+  /* Ensure captions are hidden by default */
+  .img-description {
+    opacity: 0 !important;
+    pointer-events: none;
+  }
+
+  /* Show caption only on tap or hover */
+  .image-wrapper.open .img-description,
+  .image-wrapper:hover .img-description {
+    opacity: 1 !important;
+    pointer-events: auto;
+  }
+
+  /* Adjust image-wrapper for better touch interaction */
+  .image-wrapper {
+    padding: 1rem;
+  }
+  .image-column,
+  .image-wrapper,
+  .history-image-column,
+  .history-image-wrapper,
+  .history-image-wrapper img,
+  .image-wrapper img{ display: none !important; /* hide all images by default */
+  }
+}
+/* iPhone 15 and 15 Pro (393px width) */
+@media screen and (max-width: 393px) {
+    main {
+    flex-direction: column; /* stack content vertically on narrow screens */
+    padding-top:2vh;
+  }
+ .site-header{
+  min-height:5vh;
+  height:5vh;
+  max-height:5vh;
+ }
+ .nav-bar{
+top: 5vh;
+max-height:22vh;
+padding-bottom:0;
+ }
+ 
+  /* Fix text color in main area */
+  .text-column {
+    color: #000 !important; /* ensure text is visible */
+  }
+
+  /* Ensure captions are hidden by default */
+  .img-description {
+    opacity: 0 !important;
+    pointer-events: none;
+  }
+
+  /* Show caption only on tap or hover */
+  .image-wrapper.open .img-description,
+  .image-wrapper:hover .img-description {
+    opacity: 1 !important;
+    pointer-events: auto;
+  }
+
+  /* Adjust image-wrapper for better touch interaction */
+  .image-wrapper {
+    padding: 1rem;
+  }
+  .image-column,
+  .image-wrapper,
+  .history-image-column,
+  .history-image-wrapper,
+  .history-image-wrapper img,
+  .image-wrapper img{ display: none !important; /* hide all images by default */
+  }
+}
+
+/* iPhone 15 Plus (430px width) */
+@media screen and (max-width: 430px) {
+  main {
+    flex-direction: column; /* stack content vertically on narrow screens */
+    padding-top:2vh;
+  }
+ .site-header{
+  min-height:5vh;
+  height:5vh;
+  max-height:5vh;
+ }
+ .nav-bar{
+top: 5vh;
+max-height:22vh;
+padding-bottom:0;
+ }
+ 
+ /* Base Styles */
+.text-column {
+  color: #000 !important;
+}
+
+.img-description {
+  opacity: 0 !important;
+  pointer-events: none;
+}
+
+.image-wrapper.open .img-description,
+.image-wrapper:hover .img-description {
+  opacity: 1 !important;
+  pointer-events: auto;
+}
+
+.image-wrapper {
+  padding: 1rem;
+}
+
+.image-column,
+.image-wrapper,
+.history-image-column,
+.history-image-wrapper,
+.history-image-wrapper img,
+.image-wrapper img {
+  display: none !important;
+}
+
+/* Shared Mobile Styles */
+@media screen and (max-width: 1440px) {
+  main {
+    flex-direction: column;
+    padding-top: 2vh;
+  }
+
+  .site-header {
+    min-height: 5vh;
+    height: 5vh;
+    max-height: 5vh;
+  }
+
+  .nav-bar {
+    top: 5vh;
+    max-height: 22vh;
+    padding-bottom: 0;
+  }
+
+  .text-column {
+    color: #000 !important;
+  }
+
+  .img-description {
+    opacity: 0 !important;
+    pointer-events: none;
+  }
+
+  .image-wrapper.open .img-description,
+  .image-wrapper:hover .img-description {
+    opacity: 1 !important;
+    pointer-events: auto;
+  }
+
+  .image-wrapper {
+    padding: 1rem;
+  }
+
+  .image-column,
+  .image-wrapper,
+  .history-image-column,
+  .history-image-wrapper,
+  .history-image-wrapper img,
+  .image-wrapper img {
+    display: none !important;
+  }
 }
