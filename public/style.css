@@ -15,8 +15,6 @@ body {
   gap: 1.75rem;
   max-width: 1200px;
   margin: 0 auto;
-  padding-top:.5rem;
-  padding-bottom: .5rem;
 }
 
 /* Each equipment item card */
@@ -81,7 +79,6 @@ html, body {
   max-width: 100%;
   height: auto;
   display: block;
-  object-fit:contain;
   top: -10px;
 }
 .site-header img.fll-logo {
@@ -90,7 +87,6 @@ html, body {
   max-width: 100%;
   height: auto;
   display: block;
-  object-fit:contain;
   top: -10px;
 }
 
@@ -620,7 +616,7 @@ a:focus, button:focus, input:focus, textarea:focus {
 .vs-item-title {
   margin: 0 0 0.5rem 0;
   font-size: 1.5rem;
-  color: #0077cc;
+  color: #f1b400;
 }
 
 /* Description text */
@@ -636,7 +632,7 @@ a:focus, button:focus, input:focus, textarea:focus {
   margin: 0;
   font-weight: bold;
   font-size: 1.2rem;
-  color: #f1b400;
+  color:#4caf50;
 }
 
 .equipment-item h2 a:hover {
@@ -759,13 +755,7 @@ ul li {
     line-height: 1.5;
     padding-top: 8rem;
   }
- .image-column,
-  .image-wrapper,
-  .history-image-column,
-  .history-image-wrapper,
-  .history-image-wrapper img,
-  .image-wrapper img{ display: none !important; /* hide all images by default */
-  }
+
   .site-header {
     height: 5.5rem;
     padding: 0 0.5rem;
@@ -868,25 +858,5 @@ ul li {
   .history-image-wrapper,
   .history-image-wrapper img,
   .image-wrapper img{ display: none !important; /* hide all images by default */
-  }
-}
-@media screen and (max-width: 1024px) {
-  /* Hide image columns / grids */
-  .history-image-column,
-  .history-image-wrapper,
-  .history-image-wrapper img{
-    display: none !important;
-  }
-
-  /* Optional: ensure text-column spans full width */
-  .text-column {
-    width: 100%;
-    padding: 1rem;
-  }
-
-  /* Optional: stack layout vertically */
-  main {
-    flex-direction: column;
-    gap: 1rem;
   }
 }
