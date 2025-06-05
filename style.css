@@ -175,38 +175,34 @@ html, body {
   top: 0;
   left: 0;
   width: 100%;
-  height: 7.5rem;
+  min-height: 15vh;
+  height: 15vh;
+  max-height:15vh;
   overflow: hidden;
   z-index: 1000;
   background-color: black;
-  padding: 0 1rem;
+  padding: 0 1vh;
 }
 
 .site-header img {
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: contain;
   display: block;
 }
 
 .nav-bar {
   position: fixed;
-  top: 8.75rem;
+  top: 15vh;
   left: 0;
   width: 100%;
   z-index: 999;
+  border-top: 1px solid black;
+  padding-bottom:0;
   background-color: black;
+  margin-bottom:0;
 }
 
-.separator {
-  position: fixed;
-  top: 7.5rem;
-  left: 0;
-  width: 100%;
-  height: 1.25rem;
-  background-color: black;
-  z-index: 1000;
-}
 
 .full-logo {
   position: absolute;
@@ -267,6 +263,8 @@ main {
   margin: 0;
   gap: 2.5rem;
   align-items: stretch;
+  margin-top:0;
+  padding-top:0;
   position: relative;
 }
 
@@ -673,7 +671,11 @@ ul li {
   flex-shrink: 0;
   align-self: stretch;
   position: relative;
-  margin: 0;
+  margin: -40px;
+  top: 0;
+  bottom:0;
+  z-index:-50;
+  overflow:hidden;
 }
 
 .road-separator-vertical::before {
@@ -759,26 +761,8 @@ ul li {
     line-height: 1.5;
     padding-top: 8rem;
   }
- .image-column,
-  .image-wrapper,
-  .history-image-column,
-  .history-image-wrapper,
-  .history-image-wrapper img,
-  .image-wrapper img{ display: none !important; /* hide all images by default */
-  }
-  .site-header {
-    height: 5.5rem;
-    padding: 0 0.5rem;
-  }
 
-  .separator {
-    top: 5.5rem;
-    height: 1rem;
-  }
-
-  .nav-bar {
-    top: 6.5rem;
-  }
+  
 
   .logo {
     transform: scale(1.3);
@@ -808,7 +792,13 @@ ul li {
     gap: 1rem;
     padding: 0 1rem;
   }
-
+ .image-column,
+  .image-wrapper,
+  .history-image-column,
+  .history-image-wrapper,
+  .history-image-wrapper img,
+  .image-wrapper img{ display: none !important; /* hide all images by default */
+  }
   .image-wrapper {
     flex: 0 0 75%;
     padding: 1rem 0.5rem;
