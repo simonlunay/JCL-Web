@@ -900,3 +900,69 @@ padding-bottom:0;
     display: none !important;
   }
 }
+@media only screen and (min-width: 402px) and (max-width: 767px) {
+  main {
+    flex-direction: column; /* stack content vertically on narrow screens */
+    padding-top:2vh;
+  }
+ .site-header{
+  min-height:8vh;
+  height:8vh;
+  max-height:8vh;
+ }
+ .nav-bar{
+top: 8vh;
+max-height:22vh;
+padding-bottom:0;
+ }
+ 
+  /* Fix text color in main area */
+  .text-column {
+    color: #000 !important; /* ensure text is visible */
+  }
+
+  /* Ensure captions are hidden by default */
+  .img-description {
+    opacity: 0 !important;
+    pointer-events: none;
+  }
+
+  /* Show caption only on tap or hover */
+  .image-wrapper.open .img-description,
+  .image-wrapper:hover .img-description {
+    opacity: 1 !important;
+    pointer-events: auto;
+  }
+
+  /* Adjust image-wrapper for better touch interaction */
+  .image-wrapper {
+    padding: 1rem;
+  }
+  .image-column,
+  .image-wrapper,
+  .history-image-column,
+  .history-image-wrapper,
+  .history-image-wrapper img,
+  .image-wrapper img{ display: none !important; /* hide all images by default */
+  }
+}
+@media screen and (max-width: 1024px) {
+  /* Hide image columns / grids */
+  .history-image-column,
+  .history-image-wrapper,
+  .history-image-wrapper img{
+    display: none !important;
+  }
+
+  /* Optional: ensure text-column spans full width */
+  .text-column {
+    width: 100%;
+    padding: 1rem;
+  }
+
+  /* Optional: stack layout vertically */
+  main {
+    flex-direction: column;
+    gap: 1rem;
+  }
+}
