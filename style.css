@@ -906,12 +906,12 @@ padding-bottom:0;
     padding-top:2vh;
   }
  .site-header{
-  min-height:8vh;
-  height:8vh;
-  max-height:8vh;
+  min-height:5vh;
+  height:5vh;
+  max-height:5vh;
  }
  .nav-bar{
-top: 8vh;
+top: 5vh;
 max-height:22vh;
 padding-bottom:0;
  }
