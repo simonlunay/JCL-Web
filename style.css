@@ -8,6 +8,7 @@ body {
   line-height: 1.4;
   box-sizing: border-box;
 }
+
 /* Equipment Container Grid */
 .equipment-container {
   display: grid;
@@ -21,18 +22,19 @@ body {
 
 /* Each equipment item card */
 .equipment-item {
-  background: white;
-  border-radius: 8px;
-  box-shadow: 0 6px 12px rgba(0,0,0,0.1);
-  overflow: hidden;
+  background: transparent;
+  border-radius: 0;
+  box-shadow: none;
   display: flex;
   flex-direction: column;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  align-items: center;
+  padding: 0.5rem 0;
+  transition: none;
 }
 
 .equipment-item:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 12px 20px rgba(0,0,0,0.15);
+  transform: none;
+  box-shadow: none;
 }
 
 /* Image styling */
@@ -50,18 +52,269 @@ body {
   color: #0077cc;
 }
 
-/* Description */
-.equipment-item p {
-  margin: 0 1rem 1.25rem;
-  flex-grow: 1;
-  font-size: 1rem;
-  line-height: 1.4;
-  color: #555;
+.gun-content {
+  max-width: 600px;
+  margin: 2rem auto;          /* centers and adds top margin */
+  height: 100vh;              /* full viewport height */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 2rem;
+  background: white;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+  border-radius: 12px;
+  text-align: center;
+  overflow: hidden;
+  color: black;
+}
+
+.gun-image {
+  margin-top: 2rem;           /* space between top of box and image */
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.gun-content h1 {
+  color: #f1b400;
+  margin-bottom: 0.1rem;
+}
+
+.gun-content ul {
+  list-style: inside disc;
+  font-size: 1.1rem;
+  line-height: 1.5;
+  margin-bottom: 1.5rem;
+  color: black;
+}
+
+.gun-content li {
+  color: black;               /* fixed selector */
+}
+
+.disclaimer {
+  font-size: 0.85rem;
+  color: #666;
+  margin-top: 1rem;
 }
 html, body {
   width: 100%;
   overflow-x: hidden;
+  scroll-behavior: smooth;
 }
+body {
+  display: block; /* Important: prevent inherited flex or grid issues */
+}
+
+/* Main wrapper */
+.sairspray-main {
+  width: 100%;
+  display: block; /* Make sure content flows vertically */
+}
+
+.sairspray-hero {
+  position: relative;
+  height: 100vh;             /* full viewport height */
+  width: 100%;
+  background-image: url('sairspraybackground.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+
+  display: flex;
+  align-items: flex-end;     /* pushes content to bottom */
+  justify-content: center;   /* center horizontally */
+  padding-bottom: 0;         /* no gap below title */
+  box-sizing: border-box;
+  overflow:hidden;
+}
+.lairspray-hero {
+  position: relative;
+  height: 100vh;             /* full viewport height */
+  width: 100%;
+  background-image: url('lairspray.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+
+  display: flex;
+  align-items: flex-end;     /* pushes content to bottom */
+  justify-content: center;   /* center horizontally */
+  padding-bottom: 0;         /* no gap below title */
+  box-sizing: border-box;
+  overflow:hidden;
+}
+.mairspray-hero {
+  position: relative;
+  height: 100vh;             /* full viewport height */
+  width: 100%;
+  background-image: url('mairspray.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+
+  display: flex;
+  align-items: flex-end;     /* pushes content to bottom */
+  justify-content: center;   /* center horizontally */
+  padding-bottom: 0;         /* no gap below title */
+  box-sizing: border-box;
+  overflow:hidden;
+}
+.lairless-hero {
+  position: relative;
+  height: 100vh;             /* full viewport height */
+  width: 100%;
+  background-image: url('lairless.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+
+  display: flex;
+  align-items: flex-end;     /* pushes content to bottom */
+  justify-content: center;   /* center horizontally */
+  padding-bottom: 0;         /* no gap below title */
+  box-sizing: border-box;
+  overflow:hidden;
+}
+.mairless-hero {
+  position: relative;
+  height: 100vh;             /* full viewport height */
+  width: 100%;
+  background-image: url('mairless.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+
+  display: flex;
+  align-items: flex-end;     /* pushes content to bottom */
+  justify-content: center;   /* center horizontally */
+  padding-bottom: 0;         /* no gap below title */
+  box-sizing: border-box;
+  overflow:hidden;
+}
+.sairless-hero {
+  position: relative;
+  height: 100vh;             /* full viewport height */
+  width: 100%;
+  background-image: url('newsairless.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+
+  display: flex;
+  align-items: flex-end;     /* pushes content to bottom */
+  justify-content: center;   /* center horizontally */
+  padding-bottom: 0;         /* no gap below title */
+  box-sizing: border-box;
+  overflow:hidden;
+}
+.airport-hero {
+  position: relative;
+  height: 100vh;             /* full viewport height */
+  width: 100%;
+  background-image: url('airport.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+
+  display: flex;
+  align-items: flex-end;     /* pushes content to bottom */
+  justify-content: center;   /* center horizontally */
+  padding-bottom: 0;         /* no gap below title */
+  box-sizing: border-box;
+  overflow:hidden;
+}
+
+.sairspray-title {
+  color: #f1b400;
+  font-size: 3.5rem;
+  background-color: rgba(0, 0, 0, 0.6);
+  padding: 1rem 2rem;
+  border-radius: 8px;
+  text-align: center;
+  text-shadow: 0 0 10px rgba(0,0,0,0.7);
+}
+
+/* Text Content Section */
+.sairspray-content {
+  padding: 4rem 2rem;
+  
+  background-color: #ffffff;
+ 
+  text-align: center;
+  display: block;
+}
+
+.sairspray-heading {
+  font-size: 2.5rem;
+  margin-bottom: 1.5rem;
+  color: #222;
+}
+.sairspray-accordion-container {
+  display: flex;
+  justify-content: space-between; /* spread left, center, right */
+  margin: 2rem 3rem; /* horizontal margin */
+  flex-wrap: nowrap; /* keep side-by-side */
+  gap: 1rem; /* optional small gap */
+}
+
+.sairspray-accordion-item {
+  background: #000000; /* black background */
+  border: 1px solid #ffd700; /* yellow border */
+  border-radius: 8px;
+  width: 30%; /* each box about a third */
+  box-shadow: 0 2px 6px rgba(255, 215, 0, 0.3); /* subtle yellow glow */
+  display: flex;
+  flex-direction: column;
+}
+
+.sairspray-accordion-header {
+  background-color: #000000; /* black */
+  color: #ffd700; /* yellow text */
+  border: none;
+  padding: 1rem;
+  font-size: 1.25rem;
+  border-radius: 8px 8px 0 0;
+  cursor: pointer;
+  text-align: center;
+  transition: background-color 0.3s ease;
+  user-select: none;
+}
+
+.sairspray-accordion-header:hover {
+  background-color: #333300; /* dark yellow hover */
+}
+
+.sairspray-accordion-content {
+  max-height: 0;
+  overflow: auto;
+  padding: 0 1rem;
+  background: #000000; /* black */
+  color: #ffd700; /* yellow text */
+  transition: max-height 0.3s ease, padding 0.3s ease;
+  border-top: 1px solid #ffd700;
+  border-radius: 0 0 8px 8px;
+  font-size: 1rem;
+  flex-grow: 1;
+  overflow-wrap: break-word; /* breaks long words */
+  word-wrap: break-word;
+  word-break: break-word;
+  hyphens: auto; /* hyphenate if supported */
+}
+
+.sairspray-accordion-content.open {
+  max-height: 600px; /* big enough for large lists */
+  padding: 1rem;
+  overflow-y: auto;
+}
+.sairspray-accordion-item:hover .sairspray-accordion-content {
+  max-height: 600px;
+  padding: 1rem;
+  overflow-y: auto;
+}
+
 *, *::before, *::after {
   box-sizing: border-box;
   max-width: 100%;
@@ -190,10 +443,10 @@ html, body {
   object-fit: cover;
   display: block;
 }
-
 .nav-bar {
   position: fixed;
-  top: 15vh;
+  top:15vh;
+
   left: 0;
   width: 100%;
   z-index: 999;
@@ -716,8 +969,154 @@ ul li {
   padding: 0.625rem 1.25rem;
 }
 
-/* Show on mobile and tablet */
-@media screen and (max-width: 64rem) {
+/* Combined for phones roughly from 320px up to 767px */
+@media screen and (max-width: 767px) {
+  main {
+    flex-direction: column; /* stack content vertically on narrow screens */
+    padding: 0;
+    margin: 0;
+
+  }
+  .sairspray-title{
+    display:none;
+  }
+  
+  .sairspray-accordion-container {
+    display: flex;
+    flex-direction: column;
+  }
+  .sairspray-accordion-item {
+     width: 100%; /* make them full width */
+     margin-bottom: 1rem; /* spacing between buttons */
+  }
+  /* Different site-header height for smaller and larger phones */
+  .site-header {
+    position:fixed;
+    min-height: 5vh;
+    height: 5vh;
+    max-height: 5vh;
+    z-index:1000;
+  }
+    .nav-bar {
+
+    max-height: 22vh;
+    padding-bottom: 0;
+    z-index:999;
+    position:fixed;
+    top:5vh;
+    width:100%;
+  }
+  /* Fix text color in main area */
+  .text-column {
+    color: #000 !important; /* ensure text is visible */
+  }
+
+  /* Captions hidden by default */
+  .img-description {
+    opacity: 0 !important;
+    pointer-events: none;
+  }
+
+  /* Show caption on tap or hover */
+  .image-wrapper.open .img-description,
+  .image-wrapper:hover .img-description {
+    opacity: 1 !important;
+    pointer-events: auto;
+  }
+
+  /* Adjust image-wrapper for touch interaction */
+  .image-wrapper {
+    padding: 1rem;
+  }
+
+  /* Hide all images by default */
+  .image-column,
+  .image-wrapper,
+  .history-image-column,
+  .history-image-wrapper,
+  .history-image-wrapper img,
+  .image-wrapper img {
+    display: none !important;
+  }
+}
+
+  /* For phones up to 414px, set header height to 8vh */
+  @media screen and (max-width: 414px) {
+    .site-header {
+      position:fixed;
+      min-height: 8vh;
+      height: 8vh;
+      max-height: 8vh;
+      z-index:1000;
+    }
+
+    .nav-bar {
+
+      max-height: 22vh;
+      padding-bottom: 0;
+      z-index:999;
+      position:fixed;
+    }
+
+    main {
+    flex-direction: column; /* stack content vertically on narrow screens */
+    padding-top:0;
+    }
+    .text-content {
+    display: flex;
+    flex-direction: column;
+    order:0;
+  }
+
+  .text-content img {
+    order: -1;
+    margin-bottom: 1rem;
+    width: 100%;
+    height: auto;
+  }
+  
+  }
+  
+  /* For phones between 402px and 767px, slightly different nav bar */
+  @media screen and (min-width: 402px) and (max-width: 767px) {
+    .site-header {
+      position:fixed;
+      min-height: 5vh;
+      height: 5vh;
+      max-height: 5vh;
+      z-index:1000;
+    }
+    .nav-bar {
+
+      max-height: 22vh;
+      padding-bottom: 0;
+      z-index:999;
+      position:fixed;
+    }
+  }
+
+  
+
+/* Tablets and smaller desktops: up to 1024px */
+@media screen and (max-width: 1024px) {
+  /* Hide image columns/grids */
+  .history-image-column,
+  .history-image-wrapper,
+  .history-image-wrapper img {
+    display: none !important;
+  }
+
+  /* Text column full width */
+  .text-column {
+    width: 100%;
+    padding: 1rem;
+  }
+
+  /* Stack layout vertically */
+  main {
+    flex-direction: column;
+    gap: 1rem;
+  }
   .nav-bar ul {
     display: none;
     flex-direction: column;
@@ -755,140 +1154,8 @@ ul li {
     padding-left: 1.875rem;
   }
 }
-@media screen and (max-width: 480px) {
-  body {
-    font-size: 0.95rem;
-    line-height: 1.5;
-    padding-top: 8rem;
-  }
 
-
-  .logo {
-    transform: scale(1.3);
-    width: 7rem;
-  }
-
-  .about p {
-    padding: 1.25rem;
-    font-size: 0.95rem;
-  }
-
-  .text-content {
-    flex-direction: column;
-    gap: 1.25rem;
-    padding: 2rem 1rem;
-  }
-
-  .text-content img {
-    width: 100%;
-    height: auto;
-  }
-
-  .image-column {
-    flex-direction: row;
-    overflow-x: auto;
-    width: 100%;
-    gap: 1rem;
-    padding: 0 1rem;
-  }
- .image-column,
-  .image-wrapper,
-  .history-image-column,
-  .history-image-wrapper,
-  .history-image-wrapper img,
-  .image-wrapper img{ display: none !important; /* hide all images by default */
-  }
-  .image-wrapper {
-    flex: 0 0 75%;
-    padding: 1rem 0.5rem;
-  }
-
-  .footer-top {
-    flex-direction: column;
-    gap: 1.25rem;
-  }
-
-  .footer-section {
-    border-right: none;
-    padding: 0;
-    margin: 0;
-  }
-
-  .road-separator-vertical {
-    display: none;
-  }
-
-  .road-separator-horizontal::before {
-    background-image: repeating-linear-gradient(to right, #f1b400 0 0.5rem, transparent 0.5rem 1rem);
-  }
-}
-/* Target iPhone 14 width roughly: 390px wide in portrait */
-@media screen and (max-width: 414px) {
-  main {
-    flex-direction: column; /* stack content vertically on narrow screens */
-    padding-top:2vh;
-  }
- .site-header{
-  min-height:8vh;
-  height:8vh;
-  max-height:8vh;
- }
- .nav-bar{
-top: 8vh;
-max-height:22vh;
-padding-bottom:0;
- }
- 
-  /* Fix text color in main area */
-  .text-column {
-    color: #000 !important; /* ensure text is visible */
-  }
-
-  /* Ensure captions are hidden by default */
-  .img-description {
-    opacity: 0 !important;
-    pointer-events: none;
-  }
-
-  /* Show caption only on tap or hover */
-  .image-wrapper.open .img-description,
-  .image-wrapper:hover .img-description {
-    opacity: 1 !important;
-    pointer-events: auto;
-  }
-
-  /* Adjust image-wrapper for better touch interaction */
-  .image-wrapper {
-    padding: 1rem;
-  }
-  .image-column,
-  .image-wrapper,
-  .history-image-column,
-  .history-image-wrapper,
-  .history-image-wrapper img,
-  .image-wrapper img{ display: none !important; /* hide all images by default */
-  }
-}
-@media screen and (max-width: 1024px) {
-  /* Hide image columns / grids */
-  .history-image-column,
-  .history-image-wrapper,
-  .history-image-wrapper img{
-    display: none !important;
-  }
-
-  /* Optional: ensure text-column spans full width */
-  .text-column {
-    width: 100%;
-    padding: 1rem;
-  }
-
-  /* Optional: stack layout vertically */
-  main {
-    flex-direction: column;
-    gap: 1rem;
-  }
-}
+/* Smaller than 850px: hide images and vertical separators */
 @media screen and (max-width: 850px) {
   .image-column,
   .image-wrapper,
@@ -899,259 +1166,5 @@ padding-bottom:0;
   .road-separator-vertical {
     display: none !important;
   }
-}
-@media only screen and (min-width: 402px) and (max-width: 767px) {
-  main {
-    flex-direction: column; /* stack content vertically on narrow screens */
-    padding-top:2vh;
-  }
- .site-header{
-  min-height:5vh;
-  height:5vh;
-  max-height:5vh;
- }
- .nav-bar{
-top: 5vh;
-max-height:22vh;
-padding-bottom:0;
- }
- 
-  /* Fix text color in main area */
-  .text-column {
-    color: #000 !important; /* ensure text is visible */
-  }
 
-  /* Ensure captions are hidden by default */
-  .img-description {
-    opacity: 0 !important;
-    pointer-events: none;
-  }
-
-  /* Show caption only on tap or hover */
-  .image-wrapper.open .img-description,
-  .image-wrapper:hover .img-description {
-    opacity: 1 !important;
-    pointer-events: auto;
-  }
-
-  /* Adjust image-wrapper for better touch interaction */
-  .image-wrapper {
-    padding: 1rem;
-  }
-  .image-column,
-  .image-wrapper,
-  .history-image-column,
-  .history-image-wrapper,
-  .history-image-wrapper img,
-  .image-wrapper img{ display: none !important; /* hide all images by default */
-  }
-}
-@media screen and (max-width: 1024px) {
-  /* Hide image columns / grids */
-  .history-image-column,
-  .history-image-wrapper,
-  .history-image-wrapper img{
-    display: none !important;
-  }
-
-  /* Optional: ensure text-column spans full width */
-  .text-column {
-    width: 100%;
-    padding: 1rem;
-  }
-
-  /* Optional: stack layout vertically */
-  main {
-    flex-direction: column;
-    gap: 1rem;
-  }
-  
-}
-/* iPhone 16 Plus/Pro Max (expected 430–432px width) */
-@media screen and (max-width: 432px) {
-  main {
-    flex-direction: column; /* stack content vertically on narrow screens */
-    padding-top:2vh;
-  }
- .site-header{
-  min-height:5vh;
-  height:5vh;
-  max-height:5vh;
- }
- .nav-bar{
-top: 5vh;
-max-height:22vh;
-padding-bottom:0;
- }
- 
-  /* Fix text color in main area */
-  .text-column {
-    color: #000 !important; /* ensure text is visible */
-  }
-
-  /* Ensure captions are hidden by default */
-  .img-description {
-    opacity: 0 !important;
-    pointer-events: none;
-  }
-
-  /* Show caption only on tap or hover */
-  .image-wrapper.open .img-description,
-  .image-wrapper:hover .img-description {
-    opacity: 1 !important;
-    pointer-events: auto;
-  }
-
-  /* Adjust image-wrapper for better touch interaction */
-  .image-wrapper {
-    padding: 1rem;
-  }
-  .image-column,
-  .image-wrapper,
-  .history-image-column,
-  .history-image-wrapper,
-  .history-image-wrapper img,
-  .image-wrapper img{ display: none !important; /* hide all images by default */
-  }
-}
-/* iPhone 15 and 15 Pro (393px width) */
-@media screen and (max-width: 393px) {
-    main {
-    flex-direction: column; /* stack content vertically on narrow screens */
-    padding-top:2vh;
-  }
- .site-header{
-  min-height:5vh;
-  height:5vh;
-  max-height:5vh;
- }
- .nav-bar{
-top: 5vh;
-max-height:22vh;
-padding-bottom:0;
- }
- 
-  /* Fix text color in main area */
-  .text-column {
-    color: #000 !important; /* ensure text is visible */
-  }
-
-  /* Ensure captions are hidden by default */
-  .img-description {
-    opacity: 0 !important;
-    pointer-events: none;
-  }
-
-  /* Show caption only on tap or hover */
-  .image-wrapper.open .img-description,
-  .image-wrapper:hover .img-description {
-    opacity: 1 !important;
-    pointer-events: auto;
-  }
-
-  /* Adjust image-wrapper for better touch interaction */
-  .image-wrapper {
-    padding: 1rem;
-  }
-  .image-column,
-  .image-wrapper,
-  .history-image-column,
-  .history-image-wrapper,
-  .history-image-wrapper img,
-  .image-wrapper img{ display: none !important; /* hide all images by default */
-  }
-}
-
-/* iPhone 15 Plus (430px width) */
-@media screen and (max-width: 430px) {
-  main {
-    flex-direction: column; /* stack content vertically on narrow screens */
-    padding-top:2vh;
-  }
- .site-header{
-  min-height:5vh;
-  height:5vh;
-  max-height:5vh;
- }
- .nav-bar{
-top: 5vh;
-max-height:22vh;
-padding-bottom:0;
- }
- 
- /* Base Styles */
-.text-column {
-  color: #000 !important;
-}
-
-.img-description {
-  opacity: 0 !important;
-  pointer-events: none;
-}
-
-.image-wrapper.open .img-description,
-.image-wrapper:hover .img-description {
-  opacity: 1 !important;
-  pointer-events: auto;
-}
-
-.image-wrapper {
-  padding: 1rem;
-}
-
-.image-column,
-.image-wrapper,
-.history-image-column,
-.history-image-wrapper,
-.history-image-wrapper img,
-.image-wrapper img {
-  display: none !important;
-}
-
-/* Shared Mobile Styles */
-@media screen and (max-width: 1440px) {
-  main {
-    flex-direction: column;
-    padding-top: 2vh;
-  }
-
-  .site-header {
-    min-height: 5vh;
-    height: 5vh;
-    max-height: 5vh;
-  }
-
-  .nav-bar {
-    top: 5vh;
-    max-height: 22vh;
-    padding-bottom: 0;
-  }
-
-  .text-column {
-    color: #000 !important;
-  }
-
-  .img-description {
-    opacity: 0 !important;
-    pointer-events: none;
-  }
-
-  .image-wrapper.open .img-description,
-  .image-wrapper:hover .img-description {
-    opacity: 1 !important;
-    pointer-events: auto;
-  }
-
-  .image-wrapper {
-    padding: 1rem;
-  }
-
-  .image-column,
-  .image-wrapper,
-  .history-image-column,
-  .history-image-wrapper,
-  .history-image-wrapper img,
-  .image-wrapper img {
-    display: none !important;
-  }
 }

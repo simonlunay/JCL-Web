@@ -3,52 +3,54 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes" />
-  <title>Thank You | JCL Equipment Co.</title>
+  <title>JCL Equipment Co.</title>
   <link rel="icon" href="favicon-32x32.png" type="image/png" />
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-   <header class="site-header">
-    <div class="full-logo">
-      <a href="index.html">
+  <header class="site-header">
+    <div class="fll-logo">
       <img src="request_header.jpg" alt="JCL Equipment Co. Logo" class="fll-logo" />
-      </a>
     </div>
     <div class="separator"></div>
 
-       <nav class="nav-bar" id="nav-menu">
+
+
+    <nav class="nav-bar" id="nav-menu">
          <div class="hamburger" aria-label="Open navigation menu" role="button" tabindex="0">&#9776;</div> <!-- Hamburger inside nav -->
       <ul class="nav-menu">
-        <li><a href="index.html">Home</a></li>
         <li><a href="our-history.html">Our History</a></li>
-        <li class="dropdown">
-          <a href="products.html">Products/Equipment</a>
+        <li class="dropdown"> 
+          <a href="products.html">Products/Equipment ▾</a>
+          <ul class="dropdown-menu">
+            <li><a href="#">Road Striping Trucks</a></li>
+            <li><a href="#">Walk-Behinds</a></li>
+            <li><a href="#">Paint Guns</a></li>
+          </ul>
         </li>
         <li><a href="#">Repair Capabilities</a></li>
         <li><a href="support.html">Technical Support/Replacement Parts</a></li>
-        <li><a href="used.html">Used Parts For Sale</a></li>
+        <li><a href="#">Used Equipment For Sale</a></li>
       </ul>
     </nav>
   </header>
+<main class="gun-content">
+    <img src="diaphragm2.jpg" alt="Diaphragm Gun" class="gun-image" />
+  <h1>Diaphragm Gun</h1>
+  <ul>
+    <li>Excellent for oil-based paint applications</li>
+    <li>Stainless steel components for water-based paints</li>
+    <li>A realiable and low maintenance gun</li>
+    <li>For use on walk-behind machines and road striping trucks</li>
+  </ul>
 
-  <main>
-    <div class="support-form-container">
-      <h2>Thank You for Contacting Us</h2>
-      <p>Your support request has been received.</p>
-      <p>
-        A member of our team at <strong>JCL Equipment Co.</strong> will review your message and respond promptly—usually within one business day.
-      </p>
-      <p>
-        We appreciate the opportunity to assist you and are committed to helping you keep your equipment running reliably and efficiently.
-      </p>
-      <p>
-        If you need immediate assistance, please call us at <strong>937.374.1010</strong> or email <strong>jim@jclequipment.com</strong>.
-      </p>
-    </div>
-  </main>
-
+</main>
+  
+  
+  
+  
   <div class="road-separator-horizontal"></div>
-
+  
   <footer class="footer">
     <div class="footer-top">
       <div class="footer-section company-info">
@@ -63,25 +65,17 @@
       <div class="footer-section">
         <h4>🚚 Products & Equipment</h4>
         <ul>
-          <li><a href="kml.html">KML Gun</a></li>
-          <li><a href="diaphragm.html">Diaphragm Gun</a></li>
-          <li><a href="bead.html">Bead Gun</a></li>
-          <li><a href="parking.html">Parking Lot Machine</a></li>
-          <li><a href="sairspray.html">Small Airspray Striper</a></li>
-          <li><a href="sairless.html">Small Airless Stiper</a></li>
-          <li><a href="mairspray.html">Medium Airspray Striper</a></li>
-          <li><a href="mairless.html">Medium Airless Stiper</a></li>
-          <li><a href="lairspray.html">Large Airspray Striper</a></li>
-          <li><a href="lairless.html">Large Airless Stiper</a></li>
-          <li><a href="airport.html">Airport Striper</a></li>
-          
+          <li><a href="#">Road Striping Trucks</a></li>
+          <li><a href="#">Walk-Behinds</a></li>
+          <li><a href="#">Paint Guns</a></li>
         </ul>
       </div>
       <div class="footer-section">
-        <h4>🛠️ Parts & Support</h4>
+        <h4>🛠️ Support</h4>
         <ul>
-          <li><a href="support.html">Technical Support</a></li>
-          <li><a href="used.html">Used Parts</a></li>
+          <li><a href="#">Technical Support</a></li>
+          <li><a href="#">Replacement Parts</a></li>
+          <li><a href="#">Repair Capabilities</a></li>
         </ul>
       </div>
       <div class="footer-section contact">
@@ -95,6 +89,7 @@
     </div>
   </footer>
 
+  <!-- Link your external JS file here -->
   <script src="script.js"></script>
 </body>
 </html>

@@ -220,3 +220,21 @@ if (editForm) {
     }
   };
 }
+function updateNavPosition() {
+  const header = document.querySelector('.site-header');
+  const nav = document.querySelector('.nav-bar');
+  if (header && nav) {
+    const headerHeight = header.getBoundingClientRect().height;
+    nav.style.top = headerHeight + 'px';
+  }
+}
+window.addEventListener('resize', updateNavPosition);
+window.addEventListener('load', updateNavPosition);
+document.querySelectorAll('.sairspray-accordion-header').forEach(button => {
+  button.addEventListener('click', () => {
+    const content = button.nextElementSibling;
+    content.classList.toggle('open');
+  });
+});
+
+
