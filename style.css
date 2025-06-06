@@ -1061,11 +1061,25 @@ ul li {
     main {
     flex-direction: column; /* stack content vertically on narrow screens */
     padding-top:0;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
     }
     .text-content {
+      text-align:center;
     display: flex;
     flex-direction: column;
+    justify-content:center;
+    align-items: center;
     order:0;
+  }
+  .footer-section{
+    border-right:none;
+    border-bottom: 1px solid white;
+  }
+  .footer-section.contact{
+    border-bottom:none;
   }
 
   .text-content img {
@@ -1073,6 +1087,11 @@ ul li {
     margin-bottom: 1rem;
     width: 100%;
     height: auto;
+  }
+  .footer-top{
+    flex-direction: column;
+    align-items: center;
+    text-align:center;
   }
   
   }
