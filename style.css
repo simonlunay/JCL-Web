@@ -1062,22 +1062,42 @@ ul li {
     flex-direction: column; /* stack content vertically on narrow screens */
     padding-top:0;
     display:flex;
-    justify-content:center;
     align-items:center;
     text-align:center;
     }
     .text-content {
-      text-align:center;
+
+    width: 100%;
+    max-width: 900px;
+    margin: 0 auto;  /* center the entire block */
+    padding: 0 1rem; /* some breathing room */
     display: flex;
     flex-direction: column;
-    justify-content:center;
-    align-items: center;
-    order:0;
-  }
+    align-items: center; /* center children horizontally */
+    box-sizing: border-box;
+    text-align: center; /* center text inside */
+    }
+
+    .center {
+
+    max-width: 700px;
+    width: 100%;
+    margin: 0 auto;
+    text-align: center;
+    padding: 0 1rem;
+    box-sizing: border-box;
+    }
+
+    .center h2, .center p {
+    margin: 0.5rem 0;
+    }
   .footer-section{
     border-right:none;
     border-bottom: 1px solid white;
   }
+
+
+
   .footer-section.contact{
     border-bottom:none;
   }
@@ -1093,9 +1113,10 @@ ul li {
     align-items: center;
     text-align:center;
   }
-  
+    .mairless-hero, .lairless-hero, .sairless-hero, .airport-hero, .sairspray-hero, .mairspray-hero, .lairspray-hero {
+    display:none !important; /* hide hero sections on small screens */
   }
-  
+}
   /* For phones between 402px and 767px, slightly different nav bar */
   @media screen and (min-width: 402px) and (max-width: 767px) {
     .site-header {
@@ -1112,6 +1133,9 @@ ul li {
       z-index:999;
       position:fixed;
     }
+      .mairless-hero, .lairless-hero, .sairless-hero, .airport-hero, .sairspray-hero, .mairspray-hero, .lairspray-hero {
+    display:none !important; /* hide hero sections on small screens */
+  }
   }
 
   

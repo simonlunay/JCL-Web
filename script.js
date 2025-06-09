@@ -233,7 +233,7 @@ window.addEventListener('load', updateNavPosition);
 document.querySelectorAll('.sairspray-accordion-header').forEach(button => {
   button.addEventListener('click', () => {
     const content = button.nextElementSibling;
-    content.classList.toggle('open');
+    content.classList.toggle('open'); // toggles on/off
   });
 });
 
