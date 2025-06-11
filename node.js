@@ -2,6 +2,10 @@ const express = require('express');
 const multer = require('multer');
 const path = require('path');
 const fs = require('fs');
+require('dotenv').config({ path: './pass.env' });
+
+console.log('ADMIN_USER:', process.env.ADMIN_USER);
+console.log('ADMIN_PASS:', process.env.ADMIN_PASS);
 
 if (!fs.existsSync('./public/uploads')) {
   fs.mkdirSync('./public/uploads', { recursive: true });
@@ -12,7 +16,7 @@ const DATA_FILE = './items.json';
 
 // Serve admin.html on root URL
 app.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname, 'public', 'admin.html'));
+  res.sendFile(path.join(__dirname, 'public', 'used.html'));
 });
 
 // Set up multer storage
@@ -26,8 +30,7 @@ const storage = multer.diskStorage({
 });
 const upload = multer({ storage: storage });
 
-// Serve static files from /public (including uploads)
-app.use(express.static('public'));
+
 
 // Parse JSON bodies
 app.use(express.json());
@@ -70,15 +73,17 @@ app.post('/api/items', upload.single('photo'), (req, res) => {
 
 // Basic Auth for admin routes (optional)
 const basicAuth = require('express-basic-auth');
-// Protect /admin route
+
 app.get('/admin', basicAuth({
-  users: { 'jimlunay': 'Jcl45385' },
+  users: { [process.env.ADMIN_USER]: process.env.ADMIN_PASS },
   challenge: true,
-  unauthorizedResponse: (req) => 'Unauthorized',
+  unauthorizedResponse: () => 'Unauthorized',
+  
 }), (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'admin.html'));
 });
 
+app.use(express.static('public'));
 // PUT update item
 app.put('/api/items/:id', upload.single('photo'), (req, res) => {
   console.log(`PUT /api/items/${req.params.id} called`);
