@@ -1058,7 +1058,7 @@ ul li {
       position:fixed;
     }
 
-    main {
+    main {  
     flex-direction: column; /* stack content vertically on narrow screens */
     padding-top:0;
     display:flex;
@@ -1127,7 +1127,6 @@ ul li {
       z-index:1000;
     }
     .nav-bar {
-
       max-height: 22vh;
       padding-bottom: 0;
       z-index:999;
