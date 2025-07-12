@@ -67,7 +67,7 @@ document.addEventListener("DOMContentLoaded", function () {
       items.forEach(item => {
         const li = document.createElement('li');
         li.innerHTML = `
-          <img src="${item.photoUrl || ''}" alt="${item.title}" style="height:50px; vertical-align:middle; margin-right:10px;">
+          <img src="${item.photo_url || 'placeholder.png'}" alt="${item.title}" style="height:50px; vertical-align:middle; margin-right:10px;">
           <strong class="item-title" style="cursor:pointer; color:blue; text-decoration:underline;">${item.title}</strong><br/>
           <small>${item.description}</small>
         `;
@@ -145,7 +145,7 @@ document.addEventListener("DOMContentLoaded", function () {
             card.className = 'vs-item-card';
 
             card.innerHTML = `
-              <img src="${item.photoUrl || 'placeholder.png'}" alt="${item.title}" class="vs-item-image" />
+              <img src="${item.photo_url || 'placeholder.png'}" alt="${item.title}" class="vs-item-image" />
               <h3 class="vs-item-title">${item.title}</h3>
               <p class="vs-item-description">${item.description}</p>
             `;

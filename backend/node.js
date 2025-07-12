@@ -4,14 +4,14 @@ const path = require('path');
 const fs = require('fs');
 const basicAuth = require('express-basic-auth');
 const { Pool } = require('pg');
-require('dotenv').config({ path: './pass.env' });
+require('dotenv').config({ path: './backend/pass.env' });
 
 console.log('ADMIN_USER:', process.env.ADMIN_USER);
 console.log('ADMIN_PASS:', process.env.ADMIN_PASS);
 console.log('DATABASE_URL:', process.env.DATABASE_URL);
 
-if (!fs.existsSync('./public/uploads')) {
-  fs.mkdirSync('./public/uploads', { recursive: true });
+if (!fs.existsSync('./backend/public/uploads')) {
+  fs.mkdirSync('./backend/public/uploads', { recursive: true });
 }
 
 const app = express();
@@ -20,8 +20,9 @@ const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-// Serve static files (put this before route handlers)
-app.use(express.static('public'));
+// Serve uploads folder statically so images can be accessed by URLs like /uploads/filename.jpg
+app.use('/uploads', express.static(path.join(__dirname, 'public', 'uploads')));
+
 
 // Set up PostgreSQL connection pool to Supabase
 const pool = new Pool({
@@ -29,16 +30,20 @@ const pool = new Pool({
   ssl: { rejectUnauthorized: false },
 });
 
-// Set up multer storage
 const storage = multer.diskStorage({
-  destination: (req, file, cb) => cb(null, './public/uploads/'),
-  filename: (req, file, cb) => cb(null, Date.now() + path.extname(file.originalname)),
+  destination: (req, file, cb) => {
+    cb(null, path.join(__dirname, 'public', 'uploads'));
+  },
+  filename: (req, file, cb) => {
+    cb(null, Date.now() + path.extname(file.originalname));
+  }
 });
 const upload = multer({ storage });
 
+
 // Serve used.html on root URL
 app.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname, 'public', 'used.html'));
+  res.sendFile(path.join(__dirname, '..', 'public', 'used.html'));
 });
 
 // GET all items
@@ -78,9 +83,10 @@ app.get('/admin.html', basicAuth({
   challenge: true,
   unauthorizedResponse: () => 'Unauthorized',
 }), (req, res) => {
-  res.sendFile(path.join(__dirname, 'public', 'admin.html'));
+  res.sendFile(path.join(__dirname,'..', 'public', 'admin.html'));
 });
-
+// Serve static files (put this before route handlers)
+app.use(express.static('public'));
 // PUT update item
 app.put('/api/items/:id', upload.single('photo'), async (req, res) => {
   const id = parseInt(req.params.id, 10);
