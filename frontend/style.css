@@ -178,6 +178,23 @@ body {
   box-sizing: border-box;
   overflow:hidden;
 }
+.info-text {
+  color: black;
+  font-size: 1rem;
+}
+
+.custom-list {
+  list-style: none;     /* Removes bullets */
+  padding-left: 0;      /* Removes default indent */
+  margin-top: 0.5em;
+}
+
+.custom-link {
+  color: blue;
+  text-decoration: underline;
+  font-weight: bold;
+}
+
 .mairless-hero {
   position: relative;
   height: 100vh;             /* full viewport height */
