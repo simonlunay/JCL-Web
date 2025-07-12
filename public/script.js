@@ -1,4 +1,6 @@
 document.addEventListener("DOMContentLoaded", function () {
+  const API_BASE = "https://jcl-web-backend.onrender.com";
+
   // Hamburger menu
   const hamburger = document.querySelector(".hamburger");
   const navBar = document.querySelector(".nav-bar");
@@ -59,7 +61,7 @@ document.addEventListener("DOMContentLoaded", function () {
   window.fetchItems = async function () {
     if (!itemsList) return;
     try {
-      const res = await fetch('/api/items');
+      const res = await fetch(`${API_BASE}/api/items`);
       if (!res.ok) throw new Error('Failed to fetch items');
       const items = await res.json();
 
@@ -67,28 +69,25 @@ document.addEventListener("DOMContentLoaded", function () {
       items.forEach(item => {
         const li = document.createElement('li');
         li.innerHTML = `
-          <img src="${item.photo_url || 'placeholder.png'}" alt="${item.title}" style="height:50px; vertical-align:middle; margin-right:10px;">
+          <img src="${item.photo_url ? API_BASE + item.photo_url : 'placeholder.png'}" alt="${item.title}" style="height:50px; vertical-align:middle; margin-right:10px;">
           <strong class="item-title" style="cursor:pointer; color:blue; text-decoration:underline;">${item.title}</strong><br/>
           <small>${item.description}</small>
         `;
 
-        // Clicking title opens edit modal
         li.querySelector('.item-title').onclick = () => openEditModal(item);
 
-        // Edit button
         const editBtn = document.createElement('button');
         editBtn.textContent = 'Edit';
         editBtn.style.marginLeft = '10px';
         editBtn.onclick = () => openEditModal(item);
 
-        // Delete button
         const delBtn = document.createElement('button');
         delBtn.textContent = 'Delete';
         delBtn.style.marginLeft = '10px';
         delBtn.onclick = async () => {
           if (!confirm(`Delete "${item.title}"?`)) return;
           try {
-            const delRes = await fetch(`/api/items/${item.id}`, { method: 'DELETE' });
+            const delRes = await fetch(`${API_BASE}/api/items/${item.id}`, { method: 'DELETE' });
             if (!delRes.ok) throw new Error('Failed to delete item');
             showStatus(`Deleted "${item.title}"`);
             await window.fetchItems();
@@ -112,7 +111,7 @@ document.addEventListener("DOMContentLoaded", function () {
       e.preventDefault();
       const formData = new FormData(adminForm);
       try {
-        const res = await fetch('/api/items', { method: 'POST', body: formData });
+        const res = await fetch(`${API_BASE}/api/items`, { method: 'POST', body: formData });
         if (!res.ok) throw new Error('Failed to add item');
         adminForm.reset();
         showStatus('Item added successfully!');
@@ -131,11 +130,11 @@ document.addEventListener("DOMContentLoaded", function () {
   if (usedItemsContainer) {
     (async () => {
       try {
-        const res = await fetch('/api/items');
+        const res = await fetch(`${API_BASE}/api/items`);
         if (!res.ok) throw new Error('Failed to fetch items');
         const items = await res.json();
 
-        usedItemsContainer.innerHTML = '';  // Clear container
+        usedItemsContainer.innerHTML = '';
 
         if (items.length === 0) {
           usedItemsContainer.innerHTML = `<p class="no-items-message">There are no used parts for sale at this time.</p>`;
@@ -145,7 +144,7 @@ document.addEventListener("DOMContentLoaded", function () {
             card.className = 'vs-item-card';
 
             card.innerHTML = `
-              <img src="${item.photo_url || 'placeholder.png'}" alt="${item.title}" class="vs-item-image" />
+              <img src="${item.photo_url ? API_BASE + item.photo_url : 'placeholder.png'}" alt="${item.title}" class="vs-item-image" />
               <h3 class="vs-item-title">${item.title}</h3>
               <p class="vs-item-description">${item.description}</p>
             `;
@@ -202,7 +201,7 @@ if (editForm) {
     const formData = new FormData(form);
 
     try {
-      const res = await fetch(`/api/items/${id}`, {
+      const res = await fetch(`${API_BASE}/api/items/${id}`, {
         method: 'PUT',
         body: formData,
       });
