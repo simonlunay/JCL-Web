@@ -2,124 +2,151 @@ const express = require('express');
 const multer = require('multer');
 const path = require('path');
 const fs = require('fs');
+const basicAuth = require('express-basic-auth');
+const { Pool } = require('pg');
 require('dotenv').config({ path: './pass.env' });
 
 console.log('ADMIN_USER:', process.env.ADMIN_USER);
 console.log('ADMIN_PASS:', process.env.ADMIN_PASS);
+console.log('DATABASE_URL:', process.env.DATABASE_URL);
 
 if (!fs.existsSync('./public/uploads')) {
   fs.mkdirSync('./public/uploads', { recursive: true });
 }
 
 const app = express();
-const DATA_FILE = './items.json';
 
-// Serve admin.html on root URL
-app.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname, 'public', 'used.html'));
+// Middleware to parse JSON and URL-encoded bodies
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+
+// Serve static files (put this before route handlers)
+app.use(express.static('public'));
+
+// Set up PostgreSQL connection pool to Supabase
+const pool = new Pool({
+  connectionString: process.env.DATABASE_URL,
+  ssl: { rejectUnauthorized: false },
 });
 
 // Set up multer storage
 const storage = multer.diskStorage({
-  destination: function (req, file, cb) {
-    cb(null, './public/uploads/');
-  },
-  filename: function (req, file, cb) {
-    cb(null, Date.now() + path.extname(file.originalname));
-  }
+  destination: (req, file, cb) => cb(null, './public/uploads/'),
+  filename: (req, file, cb) => cb(null, Date.now() + path.extname(file.originalname)),
 });
-const upload = multer({ storage: storage });
+const upload = multer({ storage });
 
+// Serve used.html on root URL
+app.get('/', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'used.html'));
+});
 
-
-// Parse JSON bodies
-app.use(express.json());
-
-// Helper functions
-function readItems() {
-  if (!fs.existsSync(DATA_FILE)) return [];
-  return JSON.parse(fs.readFileSync(DATA_FILE));
-}
-function saveItems(items) {
-  fs.writeFileSync(DATA_FILE, JSON.stringify(items, null, 2));
-}
-
-// GET all items with cache control header to prevent caching
-app.get('/api/items', (req, res) => {
-  const items = readItems();
-  console.log('GET /api/items returning', items.length, 'items');
-  res.set('Cache-Control', 'no-store');  // IMPORTANT: no cache
-  res.json(items);
+// GET all items
+app.get('/api/items', async (req, res) => {
+  try {
+    const result = await pool.query('SELECT * FROM items ORDER BY id DESC');
+    console.log('GET /api/items returning', result.rows.length, 'items');
+    res.set('Cache-Control', 'no-store'); // no cache
+    res.json(result.rows);
+  } catch (err) {
+    console.error('Error fetching items:', err);
+    res.status(500).json({ error: 'Error fetching items' });
+  }
 });
 
 // POST new item with upload
-app.post('/api/items', upload.single('photo'), (req, res) => {
-  console.log('POST /api/items called');
-  const items = readItems();
+app.post('/api/items', upload.single('photo'), async (req, res) => {
+  const { title, description } = req.body;
+  const photoUrl = req.file ? `/uploads/${req.file.filename}` : null;
 
-  const newItem = {
-    id: Date.now(),
-    title: req.body.title,
-    description: req.body.description,
-    price: parseFloat(req.body.price),
-    photoUrl: req.file ? `/uploads/${req.file.filename}` : null,
-  };
-
-  items.push(newItem);
-  saveItems(items);
-  console.log('Item added:', newItem);
-  res.json({ message: 'Item added', item: newItem });
+  try {
+    const result = await pool.query(
+      'INSERT INTO items (title, description, photo_url) VALUES ($1, $2, $3) RETURNING *',
+      [title, description, photoUrl]
+    );
+    console.log('Item added:', result.rows[0]);
+    res.json({ message: 'Item added', item: result.rows[0] });
+  } catch (err) {
+    console.error('Error adding item:', err);
+    res.status(500).json({ error: 'Error adding item' });
+  }
 });
 
 // Basic Auth for admin routes (optional)
-const basicAuth = require('express-basic-auth');
-
-app.get('/admin', basicAuth({
+app.get('/admin.html', basicAuth({
   users: { [process.env.ADMIN_USER]: process.env.ADMIN_PASS },
   challenge: true,
   unauthorizedResponse: () => 'Unauthorized',
-  
 }), (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'admin.html'));
 });
 
-app.use(express.static('public'));
 // PUT update item
-app.put('/api/items/:id', upload.single('photo'), (req, res) => {
-  console.log(`PUT /api/items/${req.params.id} called`);
-  const items = readItems();
-  const id = parseInt(req.params.id);
-  const index = items.findIndex(i => i.id === id);
-  if (index === -1) return res.status(404).json({ error: 'Item not found' });
+app.put('/api/items/:id', upload.single('photo'), async (req, res) => {
+  const id = parseInt(req.params.id, 10);
+  if (isNaN(id)) return res.status(400).json({ error: 'Invalid item ID' });
 
-  items[index].title = req.body.title || items[index].title;
-  items[index].description = req.body.description || items[index].description;
-  items[index].price = req.body.price ? parseFloat(req.body.price) : items[index].price;
+  const { title, description } = req.body;
 
-  if (req.file) {
-    if (items[index].photoUrl) {
-      const oldPath = path.join(__dirname, 'public', items[index].photoUrl);
-      if (fs.existsSync(oldPath)) fs.unlinkSync(oldPath);
+  try {
+    const existingResult = await pool.query('SELECT * FROM items WHERE id = $1', [id]);
+    if (existingResult.rows.length === 0) {
+      return res.status(404).json({ error: 'Item not found' });
     }
-    items[index].photoUrl = `/uploads/${req.file.filename}`;
-  }
 
-  saveItems(items);
-  console.log('Item updated:', items[index]);
-  res.json({ message: 'Item updated', item: items[index] });
+    let photoUrl = existingResult.rows[0].photo_url;
+
+    if (req.file) {
+      if (photoUrl) {
+        const oldPath = path.join(__dirname, 'public', photoUrl);
+        if (fs.existsSync(oldPath)) fs.unlinkSync(oldPath);
+      }
+      photoUrl = `/uploads/${req.file.filename}`;
+    }
+
+    const updatedResult = await pool.query(
+      'UPDATE items SET title = $1, description = $2, photo_url = $3 WHERE id = $4 RETURNING *',
+      [
+        title || existingResult.rows[0].title,
+        description || existingResult.rows[0].description,
+        photoUrl,
+        id,
+      ]
+    );
+
+    console.log('Item updated:', updatedResult.rows[0]);
+    res.json({ message: 'Item updated', item: updatedResult.rows[0] });
+  } catch (err) {
+    console.error('Error updating item:', err);
+    res.status(500).json({ error: 'Error updating item' });
+  }
 });
 
 // DELETE item
-app.delete('/api/items/:id', (req, res) => {
-  console.log(`DELETE /api/items/${req.params.id} called`);
-  const items = readItems();
-  const id = parseInt(req.params.id);
-  const filtered = items.filter(i => i.id !== id);
-  if (filtered.length === items.length) return res.status(404).json({ error: 'Item not found' });
+app.delete('/api/items/:id', async (req, res) => {
+  const id = parseInt(req.params.id, 10);
+  if (isNaN(id)) return res.status(400).json({ error: 'Invalid item ID' });
 
-  saveItems(filtered);
-  console.log('Item deleted:', id);
-  res.json({ message: 'Item deleted' });
+  try {
+    const existingResult = await pool.query('SELECT * FROM items WHERE id = $1', [id]);
+    if (existingResult.rows.length === 0) {
+      return res.status(404).json({ error: 'Item not found' });
+    }
+
+    const photoUrl = existingResult.rows[0].photo_url;
+    if (photoUrl) {
+      const photoPath = path.join(__dirname, 'public', photoUrl);
+      if (fs.existsSync(photoPath)) fs.unlinkSync(photoPath);
+    }
+
+    await pool.query('DELETE FROM items WHERE id = $1', [id]);
+    console.log('Item deleted:', id);
+    res.json({ message: 'Item deleted' });
+  } catch (err) {
+    console.error('Error deleting item:', err);
+    res.status(500).json({ error: 'Error deleting item' });
+  }
 });
 
+// Start server
 app.listen(3000, () => console.log('Server started on http://localhost:3000'));

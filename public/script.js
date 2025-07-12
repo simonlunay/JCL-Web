@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", function () {
-  // Hamburger menu (your existing code)
+  // Hamburger menu
   const hamburger = document.querySelector(".hamburger");
   const navBar = document.querySelector(".nav-bar");
   const dropdowns = document.querySelectorAll(".dropdown");
@@ -68,14 +68,14 @@ document.addEventListener("DOMContentLoaded", function () {
         const li = document.createElement('li');
         li.innerHTML = `
           <img src="${item.photoUrl || ''}" alt="${item.title}" style="height:50px; vertical-align:middle; margin-right:10px;">
-          <strong class="item-title" style="cursor:pointer; color:blue; text-decoration:underline;">${item.title}</strong> - $${item.price}<br/>
+          <strong class="item-title" style="cursor:pointer; color:blue; text-decoration:underline;">${item.title}</strong><br/>
           <small>${item.description}</small>
         `;
 
         // Clicking title opens edit modal
         li.querySelector('.item-title').onclick = () => openEditModal(item);
 
-        // Edit button (optional, redundant if title clickable)
+        // Edit button
         const editBtn = document.createElement('button');
         editBtn.textContent = 'Edit';
         editBtn.style.marginLeft = '10px';
@@ -125,7 +125,6 @@ document.addEventListener("DOMContentLoaded", function () {
     window.fetchItems();
   }
 
-
   // ----------- USED PAGE ITEM DISPLAY --------------
 
   const usedItemsContainer = document.getElementById('itemsContainer');
@@ -138,19 +137,22 @@ document.addEventListener("DOMContentLoaded", function () {
 
         usedItemsContainer.innerHTML = '';  // Clear container
 
-        items.forEach(item => {
-          const card = document.createElement('div');
-          card.className = 'vs-item-card';
+        if (items.length === 0) {
+          usedItemsContainer.innerHTML = `<p class="no-items-message">There are no used parts for sale at this time.</p>`;
+        } else {
+          items.forEach(item => {
+            const card = document.createElement('div');
+            card.className = 'vs-item-card';
 
-          card.innerHTML = `
-            <img src="${item.photoUrl || 'placeholder.png'}" alt="${item.title}" class="vs-item-image" />
-            <h3 class="vs-item-title">${item.title}</h3>
-            <p class="vs-item-price">$${item.price.toFixed(2)}</p>
-            <p class="vs-item-description">${item.description}</p>
-          `;
+            card.innerHTML = `
+              <img src="${item.photoUrl || 'placeholder.png'}" alt="${item.title}" class="vs-item-image" />
+              <h3 class="vs-item-title">${item.title}</h3>
+              <p class="vs-item-description">${item.description}</p>
+            `;
 
-          usedItemsContainer.appendChild(card);
-        });
+            usedItemsContainer.appendChild(card);
+          });
+        }
       } catch (error) {
         usedItemsContainer.innerHTML = `<p class="error">Could not load items: ${error.message}</p>`;
       }
@@ -173,7 +175,6 @@ function openEditModal(item) {
   editForm.elements['id'].value = item.id;
   editForm.elements['title'].value = item.title;
   editForm.elements['description'].value = item.description;
-  editForm.elements['price'].value = item.price;
   // photo input left empty intentionally (keep existing photo if blank)
 }
 
