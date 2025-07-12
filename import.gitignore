@@ -1,3 +1,3 @@
 node_modules/
-pass.env
+backend/pass.env
 public/uploads/
