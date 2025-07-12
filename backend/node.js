@@ -3,6 +3,7 @@ const multer = require('multer');
 const path = require('path');
 const fs = require('fs');
 const basicAuth = require('express-basic-auth');
+const cors = require('cors');
 const { Pool } = require('pg');
 require('dotenv').config({ path: './backend/pass.env' });
 
@@ -15,6 +16,7 @@ if (!fs.existsSync('./backend/public/uploads')) {
 }
 
 const app = express();
+app.use(cors());
 
 // Middleware to parse JSON and URL-encoded bodies
 app.use(express.json());
