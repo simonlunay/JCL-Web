@@ -85,8 +85,9 @@ app.get('/admin.html', basicAuth({
   challenge: true,
   unauthorizedResponse: () => 'Unauthorized',
 }), (req, res) => {
-  res.sendFile(path.join(__dirname,'..', 'public', 'admin.html'));
+  res.sendFile(path.join(__dirname, 'private', 'admin.html'));
 });
+
 // Serve static files (put this before route handlers)
 app.use(express.static('public'));
 // PUT update item
