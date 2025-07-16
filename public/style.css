@@ -1058,7 +1058,7 @@ ul li {
 }
 
   /* For phones up to 414px, set header height to 8vh */
-  @media screen and (max-width: 414px) {
+  @media screen and (max-width: 480px) {
     .site-header {
       position:fixed;
       min-height: 8vh;
