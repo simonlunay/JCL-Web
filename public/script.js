@@ -44,7 +44,6 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 
   // ----------- ADMIN ITEM MANAGEMENT --------------
-
   const adminForm = document.getElementById('addForm');
   const itemsList = document.getElementById('itemsList');
   const statusMessage = document.getElementById('statusMessage');
@@ -125,7 +124,6 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   // ----------- USED PAGE ITEM DISPLAY --------------
-
   const usedItemsContainer = document.getElementById('itemsContainer');
   if (usedItemsContainer) {
     (async () => {
@@ -158,11 +156,36 @@ document.addEventListener("DOMContentLoaded", function () {
     })();
   }
 
+  // ----------- SUPPORT FORM REDIRECT --------------
+  const supportForm = document.querySelector('.support-form');
+  if (supportForm) {
+    supportForm.addEventListener('submit', function (e) {
+      e.preventDefault();
+      const formData = new FormData(supportForm);
+      fetch(supportForm.action, {
+        method: 'POST',
+        body: formData,
+        headers: {
+          'Accept': 'application/json'
+        }
+      })
+      .then(response => {
+        if (response.ok) {
+          window.location.href = 'thank-you.html';
+        } else {
+          alert('There was a problem submitting the form.');
+        }
+      })
+      .catch(error => {
+        alert('Error submitting form.');
+        console.error(error);
+      });
+    });
+  }
+
 }); // end DOMContentLoaded
 
-
 // ----------- EDIT MODAL HANDLERS (outside DOMContentLoaded) --------------
-
 function openEditModal(item) {
   const modal = document.getElementById('editModal');
   if (!modal) return;
@@ -174,7 +197,6 @@ function openEditModal(item) {
   editForm.elements['id'].value = item.id;
   editForm.elements['title'].value = item.title;
   editForm.elements['description'].value = item.description;
-  // photo input left empty intentionally (keep existing photo if blank)
 }
 
 const editModalCloseBtn = document.getElementById('editModalClose');
