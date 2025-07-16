@@ -118,7 +118,7 @@ body {
   position: relative;
   height: 100vh;             /* full viewport height */
   width: 100%;
-  background-image: url('sairspraybackground.jpg');
+  background-image: url('sairspraybackground.JPG');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -134,7 +134,7 @@ body {
   position: relative;
   height: 100vh;             /* full viewport height */
   width: 100%;
-  background-image: url('lairspray.jpg');
+  background-image: url('lairspray.JPG');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -150,7 +150,7 @@ body {
   position: relative;
   height: 100vh;             /* full viewport height */
   width: 100%;
-  background-image: url('mairspray.jpg');
+  background-image: url('mairspray.JPG');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -215,7 +215,7 @@ body {
   position: relative;
   height: 100vh;             /* full viewport height */
   width: 100%;
-  background-image: url('sairless.jpg');
+  background-image: url('sairless.JPG');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
