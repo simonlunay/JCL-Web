@@ -861,6 +861,7 @@ a:focus, button:focus, input:focus, textarea:focus {
   max-width: 600px;
   margin: 2rem auto;
   padding: 0 1rem;
+  align-items:center;
 }
 
 /* Each item card with subtle styling */
@@ -872,7 +873,8 @@ a:focus, button:focus, input:focus, textarea:focus {
   padding: 1rem;
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
+  align-items: center;
+  text-align:center;
 }
 
 /* Image fills width, height auto */
@@ -899,13 +901,7 @@ a:focus, button:focus, input:focus, textarea:focus {
   line-height: 1.4;
 }
 
-/* Price with standout color */
-.vs-item-price {
-  margin: 0;
-  font-weight: bold;
-  font-size: 1.2rem;
-  color: #f1b400;
-}
+
 
 .equipment-item h2 a:hover {
   color: #000000; /* black */
