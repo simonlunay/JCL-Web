@@ -17,7 +17,7 @@ if (!fs.existsSync('./backend/public/uploads')) {
 
 const app = express();
 app.use(cors());
-
+app.use(express.static('public'));
 // Middleware to parse JSON and URL-encoded bodies
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -89,7 +89,7 @@ app.get('/admin.html', basicAuth({
 });
 
 // Serve static files (put this before route handlers)
-app.use(express.static('public'));
+
 // PUT update item
 app.put('/api/items/:id', upload.single('photo'), async (req, res) => {
   const id = parseInt(req.params.id, 10);
