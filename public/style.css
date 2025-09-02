@@ -166,7 +166,7 @@ body {
   position: relative;
   height: 100vh;             /* full viewport height */
   width: 100%;
-  background-image: url('lairless.jpg');
+  background-image: url('airport.jpg');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -231,7 +231,7 @@ body {
   position: relative;
   height: 100vh;             /* full viewport height */
   width: 100%;
-  background-image: url('airport.jpg');
+  background-image: url('lairless.jpg');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
